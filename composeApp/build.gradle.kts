@@ -102,6 +102,7 @@ android {
 
 //https://developer.android.com/develop/ui/compose/testing#setup
 dependencies {
+    implementation(libs.androidx.compose.material)
     androidTestImplementation(libs.androidx.uitest.junit4)
     debugImplementation(libs.androidx.uitest.testManifest)
 }
