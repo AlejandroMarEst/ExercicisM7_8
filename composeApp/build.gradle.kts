@@ -89,7 +89,7 @@ android {
     compileSdk = 35
 
     defaultConfig {
-        minSdk = 21
+        minSdk = 25
         targetSdk = 35
 
         applicationId = "cat.itb.m78.exercices.androidApp"
