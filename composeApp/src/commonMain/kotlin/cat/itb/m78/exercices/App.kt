@@ -8,6 +8,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import cat.itb.m78.exercices.navegation.MainMenu
 import cat.itb.m78.exercices.navegation.NavegationResources
+import cat.itb.m78.exercices.navegation.StartMenu
 import cat.itb.m78.exercices.navegation.TicTacToeResources
 import cat.itb.m78.exercices.state.Gambling
 import cat.itb.m78.exercices.state.GoodMornin
@@ -27,6 +28,6 @@ import org.jetbrains.compose.reload.DevelopmentEntryPoint
 
 @Composable
 internal fun App() = AppTheme {
-    TicTacToeResources()
+    StartMenu()
 }
 
