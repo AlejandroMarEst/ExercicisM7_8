@@ -20,6 +20,7 @@ import cat.itb.m78.exercices.stateless.MessagesList
 import cat.itb.m78.exercices.stateless.Resources
 import cat.itb.m78.exercices.stateless.Welcome
 import cat.itb.m78.exercices.theme.AppTheme
+import cat.itb.m78.exercices.triviaIndies.TriviaNav
 import cat.itb.m78.exercices.viewModel.Counter
 import cat.itb.m78.exercices.viewModel.CounterResources
 import cat.itb.m78.exercices.viewModel.OteloResources
@@ -28,6 +29,6 @@ import org.jetbrains.compose.reload.DevelopmentEntryPoint
 
 @Composable
 internal fun App() = AppTheme {
-    StartMenu()
+    TriviaNav()
 }
 
