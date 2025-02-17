@@ -1,5 +1,6 @@
 package cat.itb.m78.exercices.triviaIndies
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -12,19 +13,30 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
+import m78exercices.composeapp.generated.resources.Res
+import m78exercices.composeapp.generated.resources.images
+import m78exercices.composeapp.generated.resources.tapestry
+import org.jetbrains.compose.resources.painterResource
 
 @Composable
 fun MainMenuTriviaView(ToGame: ()->Unit, ToSettings: ()->Unit){
     Column(Modifier.fillMaxSize(), Arrangement.Center, Alignment.CenterHorizontally){
-        Text("TRIVIA", fontSize = 10.em)
-        Spacer(Modifier.height(60.dp))
+        Text("Trivia Indie Games", fontSize = 5.em, color = Color.Cyan)
+        Image(
+            painter = painterResource(Res.drawable.images),
+            contentDescription = null, modifier = Modifier.size(600.dp, 200.dp),
+            contentScale = ContentScale.Crop
+        )
+        Spacer(Modifier.height(30.dp))
         Button(onClick = {ToGame()}){
-            Text("Start Quiz")
+            Text("Start Quiz",  color = Color.Cyan)
         }
         Button(onClick = {ToSettings()}){
-            Text("Settings")
+            Text("Settings",  color = Color.Cyan)
         }
     }
 }

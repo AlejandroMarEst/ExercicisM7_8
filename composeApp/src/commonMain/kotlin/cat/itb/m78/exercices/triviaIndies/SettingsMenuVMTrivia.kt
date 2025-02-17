@@ -5,9 +5,9 @@ import androidx.lifecycle.ViewModel
 
 class SettingsMenuViewModelTrivia : ViewModel(){
     private var settings = ConfigTriviaUpdater.get()
-    val difficulty = mutableStateOf(settings.difficulty)
-    val rounds = mutableStateOf(settings.rounds)
     val time = mutableStateOf(settings.time)
+    val rounds = mutableStateOf(settings.rounds)
+    val difficulty = mutableStateOf(settings.difficulty)
     fun setDifficulty(Difficulty : Int){
         difficulty.value = Difficulty
     }
