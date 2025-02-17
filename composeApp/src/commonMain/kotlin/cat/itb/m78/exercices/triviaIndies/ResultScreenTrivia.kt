@@ -22,7 +22,7 @@ fun ResultScreenTriviaView(score : Int, ToMainMenu: () -> Unit){
         TextButton(
             onClick = { ToMainMenu() }
         ) {
-            Text("Return to main menu",  color = Color.Cyan)
+            Text("Return to main menu",  color = Color.Blue)
         }
     }
 }

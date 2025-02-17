@@ -20,21 +20,18 @@ Question("Which indie game takes place inside a mind-control facility?", listOf(
 )
 
 data class Question(val question: String, var answer: List<String>, var correct: Int){
-    fun ramdomizeAnswers(){
-        val correctAnsw = answer[correct-1]
+    fun randomizeAnswers(){
+        val correctAnsw = answer[correct - 1]
         answer = answer.shuffled()
-        for(i in answer.indices){
-            if(answer[i] == correctAnsw){
-                correct = i+1
-            }
-        }
+        correct = answer.indexOf(correctAnsw) + 1
     }
     fun getLessAnswers(count : Int) : Question{
+        val correctAnsw = answer[correct-1]
         if (correct > count){
             val answNum = (1..count).random()
             return Question(question, List(count){
                 if(answNum-1==it){
-                    answer[correct-1]
+                    correctAnsw
                 }else{
                     answer[it]
                 }

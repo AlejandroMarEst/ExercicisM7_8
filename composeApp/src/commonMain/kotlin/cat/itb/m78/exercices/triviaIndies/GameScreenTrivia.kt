@@ -64,6 +64,7 @@ fun GameScreenTriviaView(roundNum: Int,
 
     Column(Modifier.fillMaxSize(), Arrangement.Center, Alignment.CenterHorizontally) {
         Text("Round "+ roundNum +"/" + settings.rounds,  color = Color.Cyan)
+        Text("Score: "+ score,  color = Color.Cyan)
         Spacer(Modifier.height(60.dp))
         Text(currentQuestion.question, color = Color.Cyan)
         Spacer(Modifier.height(10.dp))
@@ -73,14 +74,14 @@ fun GameScreenTriviaView(roundNum: Int,
                 resetTime()
                 Modifier.width(80.dp)
             }){
-                Text(currentQuestion.answer[0],  color = Color.Cyan)
+                Text(currentQuestion.answer[0],  color = Color.Blue)
             }
             Button(onClick = {
                 answer(2, ToScore)
                 resetTime()
                 Modifier.width(80.dp)
             }){
-                Text(currentQuestion.answer[1],  color = Color.Cyan)
+                Text(currentQuestion.answer[1],  color = Color.Blue)
             }
         }
         Row {
@@ -90,7 +91,7 @@ fun GameScreenTriviaView(roundNum: Int,
                     resetTime()
                     Modifier.width(80.dp)
                 }) {
-                    Text(currentQuestion.answer[2],  color = Color.Cyan)
+                    Text(currentQuestion.answer[2],  color = Color.Blue)
                 }
             }
             if (settings.difficulty == 3) {
@@ -99,7 +100,7 @@ fun GameScreenTriviaView(roundNum: Int,
                     resetTime()
                     Modifier.width(80.dp)
                 }) {
-                    Text(currentQuestion.answer[3],  color = Color.Cyan)
+                    Text(currentQuestion.answer[3],  color = Color.Blue)
                 }
             }
         }

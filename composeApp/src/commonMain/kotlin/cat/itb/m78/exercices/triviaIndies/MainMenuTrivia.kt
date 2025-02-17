@@ -33,10 +33,10 @@ fun MainMenuTriviaView(ToGame: ()->Unit, ToSettings: ()->Unit){
         )
         Spacer(Modifier.height(30.dp))
         Button(onClick = {ToGame()}){
-            Text("Start Quiz",  color = Color.Cyan)
+            Text("Start Quiz",  color = Color.Blue)
         }
         Button(onClick = {ToSettings()}){
-            Text("Settings",  color = Color.Cyan)
+            Text("Settings",  color = Color.Blue)
         }
     }
 }

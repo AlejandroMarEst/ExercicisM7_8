@@ -13,6 +13,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 
@@ -97,8 +98,8 @@ fun SettingsMenuTriviaView(difficulty: Int,
             )
         }
         Spacer(Modifier.height(10.dp))
-        Button(onClick = { exitSettings(ToMenu) }) {
-            Text("Return to menu")
+        Button(onClick = { exitSettings(ToMenu)}) {
+            Text("Return to menu", color = Color.Blue)
         }
     }
 }
