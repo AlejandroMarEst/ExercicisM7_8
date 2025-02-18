@@ -1,0 +1,9 @@
+Funcionalitats:
+    L'usuari pot introduïr un valor al camp de text - 0.5 - Fet
+    L'aplicació pot sumar valors - 1 - Fet
+    L'usuari pot seleccionar una operació - 0.5 - Fet
+    L'usuari pot fer les tres operacions - 3 - Fet
+    L'aplicació no falla si l'usuai introdueix un valor no numèric - 0.5 - Fet
+    El camp de text s'esborra al fer un nou càlcul - 0.5 - Fet
+    Pantalla resultat - 1.5 - Fet
+    Look and feel - 1 - Fet
