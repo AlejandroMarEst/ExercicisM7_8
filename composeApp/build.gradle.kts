@@ -55,6 +55,9 @@ kotlin {
             implementation(libs.androidx.navigation.composee)
             implementation(libs.kotlinx.serialization.json)
             implementation(libs.kotlinx.datetime)
+            implementation(libs.coil.compose)
+            implementation(libs.coil.network.okhttp)
+
         }
 
         commonTest.dependencies {
@@ -103,6 +106,7 @@ android {
 //https://developer.android.com/develop/ui/compose/testing#setup
 dependencies {
     implementation(libs.androidx.compose.material)
+    implementation(libs.volley)
     androidTestImplementation(libs.androidx.uitest.junit4)
     debugImplementation(libs.androidx.uitest.testManifest)
 }
