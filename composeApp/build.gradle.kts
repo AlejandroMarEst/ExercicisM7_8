@@ -57,7 +57,9 @@ kotlin {
             implementation(libs.kotlinx.datetime)
             implementation(libs.coil.compose)
             implementation(libs.coil.network.okhttp)
-
+            implementation("io.ktor:ktor-serialization-kotlinx-json:3.0.2")
+            implementation("com.russhwolf:multiplatform-settings-no-arg:1.3.0")
+            implementation("com.russhwolf:multiplatform-settings-serialization:1.3.0")
         }
 
         commonTest.dependencies {
