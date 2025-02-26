@@ -17,6 +17,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
+import cat.itb.m78.exercices.API.CountryAPIViewModelView
 import cat.itb.m78.exercices.calculator.calculatorNav
 import cat.itb.m78.exercices.navegation.MainMenu
 import cat.itb.m78.exercices.navegation.NavegationResources
@@ -43,5 +44,5 @@ import org.jetbrains.compose.reload.DevelopmentEntryPoint
 
 @Composable
 internal fun App() = AppTheme {
-    APIViewModelView()
+    CountryAPIViewModelView()
 }

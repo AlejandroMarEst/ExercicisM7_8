@@ -25,11 +25,6 @@ import kotlinx.serialization.json.Json
 import kotlin.random.Random
 
 @Serializable
-data class Id(
-    @SerialName("Num") val id: Jokes
-)
-
-@Serializable
 data class Jokes(
     @SerialName("id") val id: Int,
     @SerialName("type") val type: String,
