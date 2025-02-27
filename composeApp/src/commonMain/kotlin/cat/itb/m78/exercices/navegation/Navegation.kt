@@ -39,7 +39,6 @@ fun NavegationResources(){
         Screen.Screen1 -> NavegationScreen1 ({ viewModel.navigateTo(Screen.Menu) })
         Screen.Screen2 -> NavegationScreen2 ({ viewModel.navigateTo(Screen.Menu) })
         is Screen.Screen3 -> NavegationScreen3 ( currentScreen.message , {viewModel.navigateTo(Screen.Menu)})
-
     }
 }
 
