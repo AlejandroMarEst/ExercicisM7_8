@@ -34,13 +34,13 @@ import cat.itb.m78.exercices.API.EmbassyInfoAPIViewModel
 import kotlinx.datetime.format.Padding
 
 @Composable
-fun PokedexViewmodelView(){
+fun PokedexViewmodelView(ToPokeFavs : () -> Unit, ToPokeInfo : () -> Unit){
     val viewModel = viewModel{ PokedexViewmodel() }
-    PokedexView(viewModel.pokemonList.value)
+    PokedexView(viewModel.pokeFavs.value, ToPokeFavs, ToPokeInfo)
 }
 
 @Composable
-fun PokedexView(pokemons : List<Pokemon>?) {
+fun PokedexView(pokemons : List<PokemonWithFavs>?, ToPokeFavs : () -> Unit, ToPokeInfo : () -> Unit) {
     Column(Modifier.fillMaxSize().background(color = Color.hsv(349.95f, 0.9f, 0.8f)), Arrangement.Center, Alignment.CenterHorizontally) {
         Card(colors = CardDefaults.cardColors(
             containerColor = Color.hsv(193.92f, 0.5f, 0.8f)),
@@ -50,16 +50,16 @@ fun PokedexView(pokemons : List<Pokemon>?) {
         if (pokemons != null) {
             LazyColumn(Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
                 items(pokemons) { pokemonIndex ->
-                        TextButton(onClick = { }) {
-                            Row(Modifier.fillMaxSize(), Arrangement.SpaceBetween){
-                                Text((pokemons.indexOf(pokemonIndex) + 1).toString(), textAlign = TextAlign.Center, fontSize = 0.9.em, color = Color.White)
-                                Text(pokemonIndex.name.replaceFirstChar { it.titlecase() }, textAlign = TextAlign.Center, fontSize = 0.9.em, color = Color.White)
-                                Icon(
-                                    Icons.Outlined.Star,
-                                    contentDescription = null
-                                )
-                            }
+                    Row(Modifier.fillMaxSize(), Arrangement.SpaceBetween){
+                        TextButton(onClick = { ToPokeInfo() }) {
+                            Text((pokemons.indexOf(pokemonIndex) + 1).toString(), textAlign = TextAlign.Center, fontSize = 0.9.em, color = Color.White)
+                            Text(pokemonIndex.pokemon.name.replaceFirstChar { it.titlecase() }, textAlign = TextAlign.Center, fontSize = 0.9.em, color = Color.White)
                         }
+                        Icon(
+                            Icons.Outlined.Star,
+                            contentDescription = null
+                        )
+                    }
                 }
             }
         }else{

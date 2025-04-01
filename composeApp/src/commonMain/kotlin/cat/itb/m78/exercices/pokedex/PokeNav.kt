@@ -32,7 +32,13 @@ fun PokedexNav(){
             PokedexMainMenu({ navController.navigate(PokeScreens.FullPokedex)})
         }
         composable<PokeScreens.FullPokedex> {
-            PokedexViewmodelView()
+            PokedexViewmodelView({ navController.navigate(PokeScreens.FavPokemon)}, { navController.navigate(PokeScreens.PokeInfo)})
+        }
+        composable<PokeScreens.FavPokemon> {
+
+        }
+        composable<PokeScreens.PokeInfo> {
+
         }
     }
 }

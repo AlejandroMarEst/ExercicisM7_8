@@ -1,0 +1,17 @@
+CREATE TABLE Pokemon (
+    numPokedex INTEGER NOT NULL PRIMARY KEY ,
+    name TEXT NOT NULL,
+    url TEXT NOT NULL
+);
+
+selectAll:
+SELECT * FROM Pokemon;
+
+insert:
+INSERT INTO Pokemon(numPokedex, name, url) VALUES (?, ?, ?);
+
+deletePoke:
+DELETE FROM Pokemon WHERE numPokedex = (?);
+
+selectPoke:
+SELECT * FROM Pokemon WHERE numPokedex = (?);
