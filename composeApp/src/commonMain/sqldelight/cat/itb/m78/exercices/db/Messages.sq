@@ -1,0 +1,9 @@
+CREATE TABLE messages (
+  text TEXT NOT NULL
+);
+
+selectAll:
+SELECT * FROM messages;
+
+insert:
+INSERT INTO messages(text) VALUES (?);

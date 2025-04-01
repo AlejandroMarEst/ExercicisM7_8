@@ -25,11 +25,11 @@ import kotlinx.coroutines.delay
 import kotlin.time.Duration.Companion.seconds
 
 @Composable
-fun GameScreenTriviaVM(ToScore: (Int) -> Unit){
+fun GameScreenTriviaVM(toScore: (Int) -> Unit){
     val viewModel = viewModel{GameScreenViewModelTrivia()}
     GameScreenTriviaView(
         viewModel.questionCounter.value,
-        ToScore,
+        toScore,
         viewModel.currentQuestion.value,
         viewModel::answer,
         viewModel.settings,
@@ -39,7 +39,7 @@ fun GameScreenTriviaVM(ToScore: (Int) -> Unit){
 @Composable
 fun GameScreenTriviaView(roundNum: Int,
                          ToScore: (Int)->Unit,
-                         currentQuestion: Question,
+                         currentQuestion: Question?,
                          answer: (Int, (Int)->Unit)->Unit,
                          settings: ConfigTrivia,
                          score: Int){
@@ -66,44 +66,46 @@ fun GameScreenTriviaView(roundNum: Int,
         Text("Round "+ roundNum +"/" + settings.rounds,  color = Color.Cyan)
         Text("Score: "+ score,  color = Color.Cyan)
         Spacer(Modifier.height(60.dp))
-        Text(currentQuestion.question, color = Color.Cyan)
-        Spacer(Modifier.height(10.dp))
-        Row {
-            Button(onClick = {
-                answer(1, ToScore)
-                resetTime()
-                Modifier.width(80.dp)
-            }){
-                Text(currentQuestion.answer[0],  color = Color.Blue)
-            }
-            Button(onClick = {
-                answer(2, ToScore)
-                resetTime()
-                Modifier.width(80.dp)
-            }){
-                Text(currentQuestion.answer[1],  color = Color.Blue)
-            }
-        }
-        Row {
-            if (settings.difficulty >= 2) {
+        if (currentQuestion != null) {
+            Text(currentQuestion.Question, color = Color.Cyan)
+            Spacer(Modifier.height(10.dp))
+            Row {
                 Button(onClick = {
-                    answer(3, ToScore)
+                    answer(1, ToScore)
                     resetTime()
                     Modifier.width(80.dp)
                 }) {
-                    Text(currentQuestion.answer[2],  color = Color.Blue)
+                    Text(currentQuestion.answers[0], color = Color.Blue)
                 }
-            }
-            if (settings.difficulty == 3) {
                 Button(onClick = {
-                    answer(4, ToScore)
+                    answer(2, ToScore)
                     resetTime()
                     Modifier.width(80.dp)
                 }) {
-                    Text(currentQuestion.answer[3],  color = Color.Blue)
+                    Text(currentQuestion.answers[1], color = Color.Blue)
                 }
             }
+            Row {
+                if (settings.difficulty >= 2) {
+                    Button(onClick = {
+                        answer(3, ToScore)
+                        resetTime()
+                        Modifier.width(80.dp)
+                    }) {
+                        Text(currentQuestion.answers[2], color = Color.Blue)
+                    }
+                }
+                if (settings.difficulty == 3) {
+                    Button(onClick = {
+                        answer(4, ToScore)
+                        resetTime()
+                        Modifier.width(80.dp)
+                    }) {
+                        Text(currentQuestion.answers[3], color = Color.Blue)
+                    }
+                }
+            }
+            TimeLeft()
         }
-        TimeLeft()
     }
 }

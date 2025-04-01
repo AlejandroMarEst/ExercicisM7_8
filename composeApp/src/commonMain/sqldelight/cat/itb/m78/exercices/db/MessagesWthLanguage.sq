@@ -1,0 +1,13 @@
+CREATE TABLE messagesWthLanguage (
+  id INTEGER NOT NULL PRIMARY KEY,
+  text TEXT NOT NULL,
+
+  languageId INTEGER NOT NULL,
+  FOREIGN KEY (languageId) REFERENCES languages(Id)
+);
+
+selectAll:
+SELECT * FROM messagesWthLanguage;
+
+insert:
+INSERT INTO messagesWthLanguage(text, languageId) VALUES (?, ?);

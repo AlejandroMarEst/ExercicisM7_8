@@ -34,6 +34,7 @@ import kotlinx.datetime.format.Padding
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
+import m78exercices.composeapp.generated.resources.Res
 
 @Serializable
 data class Embassy(
@@ -134,6 +135,8 @@ fun EmbassyDisplay(listEmbassy: List<Embassy>?, changeFav : (String) -> Unit, na
         }
     }
 }
+
+
 
 @Composable
 fun EmbassyInfoAPIDisplay( embassies: List<Embassy>? ) {

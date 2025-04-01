@@ -1,0 +1,10 @@
+CREATE TABLE languages (
+    Id INTEGER NOT NULL PRIMARY KEY,
+    Name TEXT NOT NULL
+);
+
+selectAll:
+SELECT * FROM languages;
+
+insert:
+INSERT INTO languages(Name) VALUES (?);
