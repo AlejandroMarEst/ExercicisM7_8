@@ -8,7 +8,7 @@ import androidx.compose.runtime.mutableStateOf
 import cat.itb.m78.exercices.bd.database
 import kotlinx.coroutines.launch
 
-class PokedexViewmodel : ViewModel(){
+class PokefavsViewmodel : ViewModel(){
     var pokemonList = mutableStateOf<List<Pokemon>?>(null)
     var pokemonListWithDex = mutableStateOf<MutableList<PokemonWithDex>?>(null)
     val pokeFavs = mutableStateOf<List<PokemonWithFavs>?>(null)

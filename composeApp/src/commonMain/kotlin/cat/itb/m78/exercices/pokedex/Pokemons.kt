@@ -12,14 +12,20 @@ data class PokemonList(
 
 @Serializable
 data class Pokemon(
-    val numPokedex: Int,
     val name : String,
-    val url : String,
+    val url : String
+)
+
+@Serializable
+data class PokemonWithDex(
+    val pokedexNum : Int,
+    val name: String,
+    val url: String
 )
 
 @Serializable
 data class PokemonWithFavs(
-    val pokemon: Pokemon,
+    val pokemon: PokemonWithDex,
     var fav: Boolean
 )
 
