@@ -8,7 +8,7 @@ import kotlinx.coroutines.launch
 
 class PokeFullInfoViewModel(poke : Int) : ViewModel() {
     val pokemon = mutableStateOf<PokemonInfo?>(null)
-    val shiny = mutableStateOf(true)
+    val shiny = mutableStateOf(false)
     val male = mutableStateOf(true)
     private val poke = poke
     private val url = "https://pokeapi.co/api/v2/pokemon/"
