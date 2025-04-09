@@ -20,7 +20,7 @@ class PokefavsViewmodel : ViewModel(){
             val pokeListTemp = database.pokemonQueries.selectAll().executeAsList().filter{ it.name.startsWith(search.value, ignoreCase = true) }
             val pokeFavsList = mutableListOf<PokemonWithFavs>()
             for (pokemon in pokeListTemp!!){
-                println(pokemon.toString())
+                println(pokemon.toString()) // Si s'elimina no funciona, no se perque
                 pokeFavsList.add(PokemonWithFavs(PokemonWithDex(pokemon.numPokedex.toInt(), pokemon.name, pokemon.url), true))
             }
             pokeFavs.value = pokeFavsList
