@@ -57,7 +57,6 @@ kotlin {
             implementation(libs.kotlinx.serialization.json)
             implementation(libs.kotlinx.datetime)
             implementation(libs.coil.compose)
-            implementation(libs.coil.network.okhttp)
             implementation("io.coil-kt.coil3:coil-compose:3.1.0")
             implementation("io.coil-kt.coil3:coil-network-ktor3:3.1.0")
             implementation("io.ktor:ktor-serialization-kotlinx-json:3.0.2")

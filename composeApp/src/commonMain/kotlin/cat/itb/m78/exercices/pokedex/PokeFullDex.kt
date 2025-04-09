@@ -34,6 +34,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Shapes
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -50,13 +51,13 @@ import cat.itb.m78.exercices.API.EmbassyInfoAPIViewModel
 import kotlinx.datetime.format.Padding
 
 @Composable
-fun PokedexViewmodelView(ToPokeFavs : () -> Unit, ToPokeInfo : () -> Unit){
+fun PokedexViewmodelView(ToPokeFavs : () -> Unit, ToPokeInfo : (Int) -> Unit){
     val viewModel = viewModel{ PokedexViewmodel() }
-    PokedexView(viewModel.pokeFavs.value, ToPokeFavs, ToPokeInfo, viewModel::toggleFav)
+    PokedexView(viewModel.pokeFavs.value, viewModel::searchUpdate, viewModel.search.value, ToPokeFavs, ToPokeInfo, viewModel::toggleFav)
 }
 
 @Composable
-fun PokedexView(pokemons : List<PokemonWithFavs>?, ToPokeFavs : () -> Unit, ToPokeInfo : () -> Unit, ToggleFav : (PokemonWithFavs) -> Unit) {
+fun PokedexView(pokemons : List<PokemonWithFavs>?, searchUpdate: (String) -> Unit, Search : String ,ToPokeFavs : () -> Unit, ToPokeInfo : (Int) -> Unit, ToggleFav : (PokemonWithFavs) -> Unit) {
     Column(Modifier.fillMaxSize().background(color = Color.hsv(349.95f, 0.9f, 0.8f)), Arrangement.Center, Alignment.CenterHorizontally) {
         Card(colors = CardDefaults.cardColors(
             containerColor = Color.hsv(193.92f, 0.5f, 0.8f)),
@@ -82,7 +83,7 @@ fun PokedexView(pokemons : List<PokemonWithFavs>?, ToPokeFavs : () -> Unit, ToPo
                                         modifier = Modifier.padding(5.dp))
                                 }
                             }
-                            TextButton(onClick = { print("Favorite") }, Modifier.size(250.dp)) {
+                            TextButton(onClick = { ToPokeFavs() }, Modifier.size(250.dp)) {
                                 Row {
                                     Icon(
                                         Icons.Filled.Favorite,
@@ -103,13 +104,19 @@ fun PokedexView(pokemons : List<PokemonWithFavs>?, ToPokeFavs : () -> Unit, ToPo
                 Modifier.fillMaxSize().background(color = Color.hsv(193.92f, 0.5f, 0.8f)),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
+                TextField(
+                    Search,
+                    onValueChange = searchUpdate,
+                    label = { Text("Search") },
+                    modifier = Modifier.fillMaxWidth()
+                )
                 LazyColumn(
                     Modifier.fillMaxSize(),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     items(pokemons) { pokemonIndex ->
                         Row(Modifier.fillMaxSize(), Arrangement.SpaceBetween) {
-                            TextButton(onClick = { ToPokeInfo() }, Modifier.width(550.dp)) {
+                            TextButton(onClick = {ToPokeInfo(pokemonIndex.pokemon.pokedexNum)}, Modifier.width(550.dp)) {
                                 Row(Modifier.fillMaxSize()) {
                                     Text(pokemonIndex.pokemon.pokedexNum.toString(),
                                         textAlign = TextAlign.Center,

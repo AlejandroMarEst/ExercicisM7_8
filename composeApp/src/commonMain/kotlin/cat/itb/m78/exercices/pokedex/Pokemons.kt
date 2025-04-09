@@ -34,24 +34,24 @@ data class PokemonInfo(
     @SerialName("id") val numPokedex : Int,
     val name : String,
     val sprites : Sprites,
-    private val types : List<TypeInfo>,
+    private val types : List<TypeInfo?>,
     val height : Int,
     val weight : Int
 ){
     val primaryType get() = types[0]
-    val secondaryType get() = types[1]
+    val secondaryType get() = if (types.size>1){types[1]} else { null }
 }
 
 @Serializable
 data class Sprites(
     @SerialName("front_default") val frontDefaultMasc : String,
-    @SerialName("back_default") val backDefaultMasc : String,
+    @SerialName("back_default") val backDefaultMasc : String? = null,
     @SerialName("front_shiny") val frontShinyMasc : String,
-    @SerialName("back_shiny") val backShinyMasc : String,
-    @SerialName("front_female") val frontDefaultFem : String?,
-    @SerialName("back_female") val backDefaultFem : String?,
-    @SerialName("front_shiny_femal") val frontShinyFem : String?,
-    @SerialName("back_shiny_female") val backShinyFem : String?
+    @SerialName("back_shiny") val backShinyMasc : String? = null,
+    @SerialName("front_female") val frontDefaultFem : String? = null,
+    @SerialName("back_female") val backDefaultFem : String? = null,
+    @SerialName("front_shiny_femal") val frontShinyFem : String? = null,
+    @SerialName("back_shiny_female") val backShinyFem : String? = null
 )
 
 @Serializable

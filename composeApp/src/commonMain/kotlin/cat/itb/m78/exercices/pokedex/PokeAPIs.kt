@@ -17,16 +17,6 @@ object PokedexApi{
             })
         }
     }
+    suspend fun list(url: String) = client.get(url).body<PokemonInfo>()
     suspend fun list() = client.get(url).body<PokemonList>()
-}
-
-object PokemonApi{
-    private val client = HttpClient(){
-        install(ContentNegotiation) {
-            json(Json {
-                ignoreUnknownKeys = true
-            })
-        }
-    }
-    suspend fun list(url : String) = client.get(url).body<PokemonInfo>()
 }

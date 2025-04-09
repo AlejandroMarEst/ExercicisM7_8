@@ -9,28 +9,19 @@ import cat.itb.m78.exercices.bd.database
 import kotlinx.coroutines.launch
 
 class PokefavsViewmodel : ViewModel(){
-    var pokemonList = mutableStateOf<List<Pokemon>?>(null)
+    val search = mutableStateOf("")
     var pokemonListWithDex = mutableStateOf<MutableList<PokemonWithDex>?>(null)
     val pokeFavs = mutableStateOf<List<PokemonWithFavs>?>(null)
     init {
-        viewModelScope.launch(Dispatchers.Default){
-            pokemonList.value = PokedexApi.list().pokemons
-            val pokeListTemp = mutableListOf<PokemonWithDex>()
-            for (pokemon in PokedexApi.list().pokemons){
-                pokeListTemp.add(PokemonWithDex(PokedexApi.list().pokemons.indexOf(pokemon), pokemon.name, pokemon.url))
-            }
-            pokemonListWithDex.value = pokeListTemp
-            loadData()
-        }
+        loadData()
     }
     fun loadData(){
         viewModelScope.launch(Dispatchers.Default){
-            val pokeListTemp = pokemonListWithDex.value
+            val pokeListTemp = database.pokemonQueries.selectAll().executeAsList().filter{ it.name.startsWith(search.value, ignoreCase = true) }
             val pokeFavsList = mutableListOf<PokemonWithFavs>()
             for (pokemon in pokeListTemp!!){
-                val fav : Boolean = database.pokemonQueries.selectPoke(pokemon.pokedexNum.toLong()).executeAsOneOrNull() != null
-                pokeFavsList.add(PokemonWithFavs(pokemon, fav))
-                println(pokemon)
+                println(pokemon.toString())
+                pokeFavsList.add(PokemonWithFavs(PokemonWithDex(pokemon.numPokedex.toInt(), pokemon.name, pokemon.url), true))
             }
             pokeFavs.value = pokeFavsList
         }
@@ -43,6 +34,10 @@ class PokefavsViewmodel : ViewModel(){
         } else{
             database.pokemonQueries.insert(pokemonFav.pokemon.pokedexNum.toLong(), pokemonFav.pokemon.name, pokemonFav.pokemon.url)
         }
+        loadData()
+    }
+    fun searchUpdate(string: String){
+        search.value = string
         loadData()
     }
 }
