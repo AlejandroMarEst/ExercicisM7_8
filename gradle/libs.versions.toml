@@ -19,6 +19,8 @@ volley = "1.2.1"
 roomCommon = "2.6.1"
 material3Android = "1.3.1"
 composeMaterialVersion = "1.4.1"
+coreI18n = "1.0.0-rc01"
+protoliteWellKnownTypes = "18.0.1"
 
 [libraries]
 
@@ -51,6 +53,8 @@ volley = { group = "com.android.volley", name = "volley", version.ref = "volley"
 androidx-room-common = { group = "androidx.room", name = "room-common", version.ref = "roomCommon" }
 androidx-material3-android = { group = "androidx.compose.material3", name = "material3-android", version.ref = "material3Android" }
 compose-material = { group = "androidx.wear.compose", name = "compose-material", version.ref = "composeMaterialVersion" }
+androidx-core-i18n = { group = "androidx.core", name = "core-i18n", version.ref = "coreI18n" }
+protolite-well-known-types = { group = "com.google.firebase", name = "protolite-well-known-types", version.ref = "protoliteWellKnownTypes" }
 
 [plugins]
 

@@ -22,6 +22,7 @@ import cat.itb.m78.exercices.API.EmbassyAPIViewModelView
 import cat.itb.m78.exercices.API.NavResourcesEmbassy
 import cat.itb.m78.exercices.bd.MessagesApp
 import cat.itb.m78.exercices.calculator.calculatorNav
+import cat.itb.m78.exercices.examAPI.ExamNav
 import cat.itb.m78.exercices.navegation.MainMenu
 import cat.itb.m78.exercices.navegation.NavegationResources
 import cat.itb.m78.exercices.navegation.StartMenu
@@ -49,5 +50,5 @@ import org.jetbrains.compose.reload.DevelopmentEntryPoint
 
 @Composable
 internal fun App() = AppTheme {
-    PokedexNav()
+    ExamNav()
 }

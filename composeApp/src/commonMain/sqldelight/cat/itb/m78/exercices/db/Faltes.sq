@@ -1,0 +1,17 @@
+CREATE TABLE Faltes (
+    id INTEGER NOT NULL PRIMARY KEY,
+    id_alumne INTEGER NOT NULL,
+    date TEXT NOT NULL
+);
+
+selectAll:
+SELECT * FROM Faltes;
+
+insert:
+INSERT INTO Faltes(id_alumne, date) VALUES (?, ?);
+
+deletePoke:
+DELETE FROM Faltes WHERE id_alumne = (?);
+
+selectFaltesPerAlumne:
+SELECT * FROM Faltes WHERE id_alumne = (?);
