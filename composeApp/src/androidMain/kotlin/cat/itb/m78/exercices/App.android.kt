@@ -7,12 +7,13 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import cat.itb.m78.exercices.CamEx.CamExNav
+import cat.itb.m78.exercices.Maps.MapsScreen
 
 class AppActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContent { CamExNav() }
+        setContent { MapsScreen() }
     }
 }
 

@@ -19,6 +19,7 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.awaitCancellation
 
 class CamExViewModel : ViewModel(){
+    val photoList = mutableListOf<String>()
     val surferRequest = mutableStateOf<SurfaceRequest?>(null)
     private val cameraPreviewUseCase = Preview.Builder().build().apply {
         setSurfaceProvider { newSurfaceRequest ->
@@ -31,5 +32,34 @@ class CamExViewModel : ViewModel(){
         processCameraProvider.bindToLifecycle(lifecycleOwner, DEFAULT_BACK_CAMERA, cameraPreviewUseCase, imageCaptureUseCase
         )
         try { awaitCancellation() } finally { processCameraProvider.unbindAll() }
+    }
+    fun takePhoto(context: Context) {
+        val name = "photo_" + System.nanoTime()
+        val contentValues = ContentValues().apply {
+            put(MediaStore.MediaColumns.DISPLAY_NAME, name)
+            put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg")
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
+                put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/CameraX-Image")
+            }
+        }
+        val outputOptions = ImageCapture.OutputFileOptions.Builder(
+            context.contentResolver,
+            MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+            contentValues
+        ).build()
+        imageCaptureUseCase.takePicture(
+            outputOptions,
+            ContextCompat.getMainExecutor(context),
+            object : ImageCapture.OnImageSavedCallback {
+                override fun onError(exc: ImageCaptureException) {
+                    Log.e("CameraPreview", "Photo capture failed: ${exc.message}", exc)
+                }
+
+                override fun onImageSaved(output: ImageCapture.OutputFileResults) {
+                    Log.d("CameraPreview", "Photo capture succeeded: ${output.savedUri}")
+                    photoList.add(output.savedUri.toString())
+                }
+            }
+        )
     }
 }

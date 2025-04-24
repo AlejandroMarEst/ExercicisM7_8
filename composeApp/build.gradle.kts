@@ -12,6 +12,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlinx.serialization)
     id("app.cash.sqldelight") version "2.0.2"
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
 composeCompiler {
@@ -85,7 +86,7 @@ kotlin {
             implementation("androidx.camera:camera-compose:1.5.0-alpha06")
             implementation("androidx.camera:camera-lifecycle:1.5.0-alpha06")
             implementation("androidx.camera:camera-extensions:1.5.0-alpha06")
-        }
+            implementation("com.google.maps.android:maps-compose:6.6.0")        }
 
         jvmMain.dependencies {
             implementation(compose.desktop.currentOs)
@@ -107,7 +108,7 @@ android {
     compileSdk = 35
 
     defaultConfig {
-        minSdk = 25
+        minSdk = 34
         targetSdk = 35
 
         applicationId = "cat.itb.m78.exercices.androidApp"
@@ -166,4 +167,16 @@ compose.desktop {
 
 tasks.register<ComposeHotRun>("runHot") {
     mainClass.set("HotrunKt")
+}
+
+secrets {
+    // To add your Maps API key to this project:
+    // 1. If the secrets.properties file does not exist, create it in the same folder as the local.properties file.
+    // 2. Add this line, where YOUR_API_KEY is your API key:
+    //        MAPS_API_KEY=YOUR_API_KEY
+    propertiesFileName = "secret.properties"
+
+    // A properties file containing default secret values. This file can be
+    // checked in version control.
+    defaultPropertiesFileName = "local.default.properties"
 }
