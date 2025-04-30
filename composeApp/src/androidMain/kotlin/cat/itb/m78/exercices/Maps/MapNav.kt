@@ -17,7 +17,7 @@ object MapNav{
     @Serializable
     data object Pointers
     @Serializable
-    data object PointerCreater
+    data object PointerCreator
 }
 
 @Composable
@@ -28,8 +28,8 @@ fun MapNav(){
             //PokedexMainMenu({ navController.navigate(PokeScreens.FullPokedex)})
             MapsScreen({navController.navigate(MapNav.Pointers)})
         }
-        composable<CamNav.Camera> {
-            CamExScreen({navController.navigate(CamNav.Gallery(it))})
+        composable<MapNav.Pointers> {
+            PointerList({navController.navigate(MapNav.Map)})
         }
         composable<CamNav.Gallery> {
             GalleryExScreen({navController.navigate(CamNav.Camera)}, it.toRoute<CamNav.Gallery>().photos)

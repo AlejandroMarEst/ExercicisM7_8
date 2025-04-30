@@ -1,0 +1,22 @@
+CREATE TABLE Markers (
+    Id INTEGER NOT NULL PRIMARY KEY,
+    Name TEXT NOT NULL,
+    Description TEXT NOT NULL,
+    Date TEXT NOT NULL,
+    Photo TEXT NOT NULL
+);
+
+selectAll:
+SELECT * FROM Markers;
+
+select:
+SELECT * FROM Markers WHERE Id = (?);
+
+delete:
+DELETE FROM Markers WHERE Id = (?);
+
+update:
+UPDATE Markers SET (Name, Description, Date, Photo) = (?,?,?,?) WHERE Id = (?);
+
+insert:
+INSERT INTO Markers(Name, Description, Date, Photo) VALUES (?,?,?,?);
