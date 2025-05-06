@@ -1,4 +1,4 @@
-package cat.itb.m78.exercices.bd
+package cat.itb.m78.exercices.db
 
 import android.content.Context
 import androidx.startup.Initializer

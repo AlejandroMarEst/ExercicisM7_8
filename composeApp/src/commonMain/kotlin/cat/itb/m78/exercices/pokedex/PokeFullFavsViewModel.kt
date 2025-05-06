@@ -2,10 +2,9 @@ package cat.itb.m78.exercices.pokedex
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import cat.itb.m78.exercices.MyApi
 import kotlinx.coroutines.Dispatchers
 import androidx.compose.runtime.mutableStateOf
-import cat.itb.m78.exercices.bd.database
+import cat.itb.m78.exercices.db.database
 import kotlinx.coroutines.launch
 
 class PokefavsViewmodel : ViewModel(){

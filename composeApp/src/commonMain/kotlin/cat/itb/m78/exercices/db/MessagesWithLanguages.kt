@@ -1,4 +1,4 @@
-package cat.itb.m78.exercices.bd
+package cat.itb.m78.exercices.db
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Button

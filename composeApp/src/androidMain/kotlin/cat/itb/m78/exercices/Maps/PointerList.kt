@@ -36,14 +36,14 @@ import com.google.maps.android.compose.rememberCameraPositionState
 import kotlinx.coroutines.launch
 
 @Composable
-fun PointerList(ToCam : () -> Unit){
+fun PointerList(ToMap : () -> Unit){
     val viewModel = viewModel{ PointerListViewModel() }
-    PointerListDisplay(viewModel.pointerList.value)
+    PointerListDisplay(viewModel.pointerList.value, ToMap)
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PointerListDisplay(pointers : List<String>?) {
+fun PointerListDisplay(pointers : List<String>?, ToMap : () -> Unit) {
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
 
@@ -64,7 +64,7 @@ fun PointerListDisplay(pointers : List<String>?) {
                     NavigationDrawerItem(
                         label = { Text("Map", style = MaterialTheme.typography.bodyLarge) },
                         selected = false,
-                        onClick = {}
+                        onClick = {ToMap()}
                     )
                     NavigationDrawerItem(
                         label = {
