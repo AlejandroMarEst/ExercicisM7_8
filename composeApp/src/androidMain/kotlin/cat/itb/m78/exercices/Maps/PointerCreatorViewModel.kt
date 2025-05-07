@@ -4,5 +4,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 
 class PointerCreatorViewModel : ViewModel(){
-
+    val Name = mutableStateOf("")
+    val Description = mutableStateOf("")
 }
