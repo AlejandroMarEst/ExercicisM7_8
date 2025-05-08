@@ -47,6 +47,10 @@ fun MapsScreen(
                     title = i.title
                 )
             }
+            AdvancedMarker(
+                state = MarkerState(position = initialZone),
+                title = "ITB"
+            )
         }
     }
 }
