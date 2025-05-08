@@ -25,6 +25,7 @@ import coil3.compose.AsyncImage
 fun CreateMarker(lat: Double, lon: Double, savedStateHandle: SavedStateHandle, navigateToMap:()->Unit, navigateToCamera:()->Unit){
     val viewModel = viewModel{CreateMarkerViewModel(lat, lon, savedStateHandle)}
     val photoUri = viewModel.photoUri.collectAsState().value
+    viewModel.updateLastPhoto()
     CreateMarkerScreen(
         viewModel.title.value,
         viewModel.description.value,
@@ -33,7 +34,10 @@ fun CreateMarker(lat: Double, lon: Double, savedStateHandle: SavedStateHandle, n
         viewModel::addMarker,
         navigateToMap,
         navigateToCamera,
-        photoUri
+        viewModel::switchUsingLastPhoto,
+        viewModel.usingLastPhoto.value,
+        photoUri,
+        viewModel.lastPhoto
     )
 }
 
@@ -43,10 +47,13 @@ fun CreateMarkerScreen(
     description: String,
     titleChange: (String)->Unit,
     descriptionChange: (String)->Unit,
-    addMarker: (()->Unit)->Unit,
+    addMarker: (()->Unit, Boolean)->Unit,
     navigateToMap: () -> Unit,
     navigateToCamera:()->Unit,
-    photoUri: String?
+    switchUsingLastPhoto : () -> Unit,
+    usingLastPhoto : Boolean,
+    photoUri: String?,
+    lastPhoto: String?
 ){
     Column(Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center){
         TextField(
@@ -60,7 +67,12 @@ fun CreateMarkerScreen(
             onValueChange = descriptionChange
         )
         TextButton(onClick = { navigateToCamera() }){
-            if(photoUri!=null) {
+            if (usingLastPhoto) {
+                AsyncImage(
+                    model = lastPhoto,
+                    contentDescription = null
+                )
+            } else if(photoUri!=null) {
                 AsyncImage(
                     model = photoUri,
                     contentDescription = null
@@ -72,7 +84,16 @@ fun CreateMarkerScreen(
                 )
             }
         }
-        Button(onClick = { (addMarker(navigateToMap)) }) {
+        if (lastPhoto != null) {
+            Button(onClick = { switchUsingLastPhoto() }) {
+                if (!usingLastPhoto) {
+                    Text("Use last photo taken")
+                } else {
+                    Text("Stop using last photo taken")
+                }
+            }
+        }
+        Button(onClick = { (addMarker(navigateToMap, usingLastPhoto)) }) {
             Text("Add Marker")
         }
     }

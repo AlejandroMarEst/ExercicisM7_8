@@ -17,10 +17,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
+import com.russhwolf.settings.Settings
 import kotlinx.coroutines.awaitCancellation
 
 class CameraProjectViewModel() : ViewModel(){
     val surferRequest = mutableStateOf<SurfaceRequest?>(null)
+    val settings: Settings = Settings()
     private val cameraPreviewUseCase = Preview.Builder().build().apply {
         setSurfaceProvider { newSurfaceRequest ->
             surferRequest.value = newSurfaceRequest
@@ -56,6 +58,7 @@ class CameraProjectViewModel() : ViewModel(){
                 }
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
                     Log.d("CameraPreview", "Photo capture succeeded: ${output.savedUri}")
+                    settings.putString("lastPhoto", output.savedUri.toString())
                     onPhotoCaptured(output.savedUri)
                 }
             }
