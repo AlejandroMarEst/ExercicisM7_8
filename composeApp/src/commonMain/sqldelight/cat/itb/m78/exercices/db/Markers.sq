@@ -2,7 +2,6 @@ CREATE TABLE Markers (
     Id INTEGER NOT NULL PRIMARY KEY,
     Name TEXT NOT NULL,
     Description TEXT NOT NULL,
-    Date TEXT NOT NULL,
     Photo TEXT NOT NULL,
     Lat REAL NOT NULL,
     Long REAL NOT NULL
@@ -18,7 +17,7 @@ delete:
 DELETE FROM Markers WHERE Id = (?);
 
 update:
-UPDATE Markers SET (Name, Description, Date, Photo, Lat, Long) = (?,?,?,?, ?, ?) WHERE Id = (?);
+UPDATE Markers SET (Name, Description, Photo, Lat, Long) = (?,?,?, ?, ?) WHERE Id = (?);
 
 insert:
-INSERT INTO Markers(Name, Description, Date, Photo, Lat, Long) VALUES (?,?,?,?, ?, ?);
+INSERT INTO Markers(Name, Description, Photo, Lat, Long) VALUES (?,?,?, ?, ?);

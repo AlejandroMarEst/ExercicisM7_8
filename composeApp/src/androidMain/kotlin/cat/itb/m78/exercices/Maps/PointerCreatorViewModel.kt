@@ -1,9 +1,27 @@
 package cat.itb.m78.exercices.Maps
 
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import cat.itb.m78.exercices.db.database
+import com.google.android.gms.maps.model.LatLng
 
-class PointerCreatorViewModel : ViewModel(){
-    val Name = mutableStateOf("")
-    val Description = mutableStateOf("")
+class CreateMarkerViewModel(lat: Double, lon: Double, private val savedStateHandle: SavedStateHandle) : ViewModel() {
+    val coords = LatLng(lat, lon)
+    val title = mutableStateOf("")
+    val description = mutableStateOf("")
+    val photoUri = savedStateHandle.getStateFlow<String?>("PHOTO_URI_KEY", null)
+    fun titleChange(it : String){
+        title.value = it
+    }
+    fun descriptionChange(it: String){
+        description.value = it
+    }
+    fun addMarker(navigateToMapParam:()->Unit){
+        database.markersQueries.insert(title.value, description.value,
+            photoUri.value.toString(), coords.latitude, coords.longitude)
+        navigateToMapParam()
+    }
 }
+
